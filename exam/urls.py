@@ -12,6 +12,9 @@ urlpatterns = [
     path('addtest/', 
          addtest.as_view(), 
          name ='addtest'),
+    path('testlogin/', 
+         testlogin.as_view(), 
+         name ='testlogin'),
 ]
 urlpatterns += staticfiles_urlpatterns()
 # urlpatterns += patterns('',
