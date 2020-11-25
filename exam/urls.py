@@ -4,16 +4,14 @@ from django.contrib import admin
 from django.conf.urls import *
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 import exam
+from .views import *
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/token/', 
-         jwt_views.TokenObtainPairView.as_view(), 
-         name ='token_obtain_pair'), 
-    path('api/token/refresh/', 
-         jwt_views.TokenRefreshView.as_view(), 
-         name ='token_refresh'), 
-    path('exam/', include('exam.urls')),
-
+    path('addqn/', 
+         addqn.as_view(), 
+         name ='addqn'),
+    path('addtest/', 
+         addtest.as_view(), 
+         name ='addtest'),
 ]
 urlpatterns += staticfiles_urlpatterns()
 # urlpatterns += patterns('',
