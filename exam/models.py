@@ -12,6 +12,8 @@ class test1(models.Model):
     qns=models.TextField(blank=False)
     def __str__(self):
         return str(self.theme1)
+    def getv(self):
+        return {"test_id1":self.test_id1,"theme":self.theme1,"desc11":self.desc11,"noofstd":self.noofstd,"start1":self.start1,"end1":self.end1,"qns":self.qns}
 class questions1(models.Model):
     question_id1=models.CharField(max_length=100,primary_key=True)
     question1=models.TextField(blank=False)

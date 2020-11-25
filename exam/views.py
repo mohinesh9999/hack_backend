@@ -18,6 +18,13 @@ class addqn(APIView):
         return JsonResponse({'result':w})
 class addtest(APIView): 
     permission_classes = (IsAuthenticated, ) 
+    def get(self,request):
+        x=request.data
+        l=[]
+        w=test1.objects.all()
+        for i in w:
+            l.append(i.getv())
+        return JsonResponse({'result':l})
     def post(self, request): 
         x=request.data
         w=str(datetime.now().timestamp()*1000000)
