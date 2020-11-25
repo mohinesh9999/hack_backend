@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import cloudinary,os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
@@ -127,4 +127,44 @@ CORS_ORIGIN_ALLOW_ALL = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+# MEDIA_URL = '/static/'
+MEDIA_URL = '/media/'
+# MEDIA_ROOT=STATIC_URL + MEDIA_URL
+cloudinary.config(
+         cloud_name='studentmohinesh',
+         api_key='738358349287446',
+         api_secret='o0HrCNinx48oAaxCNY8ue0JhQBw'
+     )
+DEFAULT_FILE_STORAGE="cloudinary_storage.storage.MediaCloudinaryStorage"
+CLOUDINARY_STORAGE={
+    'CLOUD_NAME':("studentmohinesh"),
+    'API_KEY':('738358349287446'),
+    'API_SECRET':('o0HrCNinx48oAaxCNY8ue0JhQBw'),
+    'CLOUDINARY_URL':'cloudinary://738358349287446:o0HrCNinx48oAaxCNY8ue0JhQBw@studentmohinesh'
+}
+
+# REST_FRAMEWORK = { 
+#     'DEFAULT_AUTHENTICATION_CLASSES': [ 
+#         'rest_framework_simplejwt.authentication.JWTAuthentication', 
+#     ], 
+# } 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny'
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+}
+from datetime import timedelta
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'TOKEN_REFRESH_LIFETIME': timedelta(days=7),
+}
+# AUTH_USER_MODEL = 'user.User'
