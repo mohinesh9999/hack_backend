@@ -1,1 +1,1 @@
-web: python my_django_app/manage.py collectstatic --noinput; bin/gunicorn_django --workers=4 --bind=0.0.0.0:$PORT hack_backend/settings.py 
+web: python hack_backend/manage.py collectstatic --noinput; bin/gunicorn_django --workers=4 --bind=0.0.0.0:$PORT hack_backend/settings.py 
