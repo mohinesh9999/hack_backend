@@ -14,7 +14,7 @@ class addqn(APIView):
     def post(self, request): 
         x=request.data
         w=str(datetime.now().timestamp()*1000000)
-        questions1(w,x['question'],x['options']).save()
+        questions1(w,x['question'],x['options'],x['ans']).save()
         return JsonResponse({'result':w})
 class addtest(APIView): 
     permission_classes = (IsAuthenticated, ) 
